@@ -44,7 +44,7 @@ const createProduct = asyncHandler(async (req, res) => {
       const newProduct = await product.save();
       if (newProduct) {
         res.status(200);
-        res.json(productcreated);
+        res.json(newProduct);
       }
     } else {
       res.status(400);
