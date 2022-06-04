@@ -1,12 +1,13 @@
 const cloudinary = require('cloudinary').v2;
 
-const upload=(file)=>{
+function upload(file){
     // Cloudinary configuration
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_cloud_name,
 	api_key:process.env.CLOUDINARY_api_key,
 	api_secret: process.env.CLOUDINARY_api_secret,
 });
+
 return new Promise((resolve,reject)=>{
     cloudinary.uploader.upload(file,(err,res)=>{
         if(err){
@@ -22,4 +23,4 @@ return new Promise((resolve,reject)=>{
 
 }
 
-module.exports={upload}
+module.exports=upload
