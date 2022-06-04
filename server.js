@@ -2,15 +2,27 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const connectDB = require("./db/connect");
-const cors=require('cors')
+const { errorHandler, notFound } = require("./middleware/errorMiddleware");
+
+const cors = require("cors");
 
 dotenv.config();
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
+app.get("/", (req, res) => {
+  res.send("blinkIt");
+});
 
+
+
+
+
+
+app.use(notFound);
+app.use(errorHandler);
 
 
 const start = async () => {
