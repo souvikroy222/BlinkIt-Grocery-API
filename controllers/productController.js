@@ -52,7 +52,19 @@ const createProduct = asyncHandler(async (req, res) => {
   }
 });
 
-//@description add new product
+//@description get all products
+//@route POST /api/products/
+//@access public
+const getAllProducts = asyncHandler(async (req, res) => {
+  const findAllProducts = await Product.find({});
+  if (findAllProducts) {
+    res.json(findAllProducts);
+  } else {
+    res.status(200).json("the product not found");
+  }
+});
+
+//@description get single product
 //@route POST /api/products/:id
 //@access public
 const getSingleProduct = asyncHandler(async (req, res) => {
@@ -65,4 +77,4 @@ const getSingleProduct = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { createProduct, getSingleProduct };
+module.exports = { createProduct, getSingleProduct, getAllProducts };
